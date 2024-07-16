@@ -1,0 +1,50 @@
+{% extends 'seller/dashboard.html' %}
+{% block bodyblock %}
+
+<style>
+   img{
+      height: 40px;
+      width: 40px;
+      transition: transform 0.3s ease-in-out;
+      border-radius: 50%;
+      border: 1px solid black;
+   }
+   img:hover
+   {
+      transform: scale(3);
+   }
+</style>
+
+<table class="table table-bordered text-center">
+   <thead>
+     <tr>
+       <th scope="col">ID</th>
+       <th scope="col">IMAGE</th>
+       <th scope="col">NAME</th>
+       <th scope="col">PRICE</th>
+       <th scope="col">CATEGORY</th>
+       <th scope="col">QUANTITY</th>
+       <th scope="col" colspan="2">ACTION</th>
+     </tr>
+   </thead>
+   <tbody>
+      
+      {% for product in products %}    
+     <tr>
+       <th scope="row">{{product.id}}</th>
+       <td><img src="http://127.0.0.1:8000/dashboard/media/{{product.image}}" alt=""></td>
+       <td>{{product.name}}</td>
+       <td>{{product.price}}</td>
+       <td>{{product.category}}</td>
+       <td>{{product.quantity}}</td>
+       <td>
+         <a href="/dashboard/update/{{product.id}}" class="btn btn-primary"><i class="bi bi-pencil"></i></a>
+       </td>
+       <td>
+         <a href="/dashboard/delete/{{product.id}}" class="btn btn-danger"><i class="bi bi-trash3"></i></a>
+       </td>
+     </tr>
+     {% endfor %}
+   </tbody>
+ </table>
+ {% endblock bodyblock %}
